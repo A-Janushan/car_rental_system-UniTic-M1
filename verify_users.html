@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Users</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-body .section {
+            margin-bottom: 15px;
+        }
+
+        .modal-body label {
+            font-weight: bold;
+        }
+
+        .modal-body .details {
+            margin-left: 10px;
+        }
+
+        .view-btn, .verify-btn, .reject-btn {
+            background-color: #ffc107;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .view-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .verify-btn {
+            background-color: #28a745;
+        }
+
+        .verify-btn:hover {
+            background-color: #218838;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+        }
+
+        .reject-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Message Area Styles */
+        #message-area {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>
+            <div class="logo-container">
+                <img src="../asset/downloadlogo.png" alt="logo" class="sidebar-logo">
+            </div>
+        </h2>
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <h2>Manage Booking</h2>
+        <ul>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_history.html">Booking History</a></li>
+            <li><a href="verify_users.html" class="active">Verify Users</a></li>
+           
+        </ul>
+        <h2>Manage Services</h2>
+        <ul>
+            <li><a href="../manager/car_details.html">Car Details</a></li>
+            <li><a href="car_rental.html">Car Rental</a></li>
+            <li><a href="car-return.html">Car Return</a></li>
+            
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Verify Users</h1>
+        <div id="message-area"></div> <!-- This is where messages will appear -->
+
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>License Number</th>
+                    <th>Proof Type</th>
+                    <th>Postal Code</th>
+                    <th>License Front</th>
+                    <th>License Back</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="user-requests">
+                <!-- User rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        &copy; 2024 Car Rental Services. All Rights Reserved.
+    </footer>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>User Details</h2>
+            </div>
+            <div class="modal-body">
+                <div class="section">
+                    <label for="name">Name:</label>
+                    <span id="name" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="email">Email:</label>
+                    <span id="email" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="phone">Phone:</label>
+                    <span id="phone" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="address">Address:</label>
+                    <span id="address" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="license-number">License Number:</label>
+                    <span id="license-number" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="proof-type">Proof Type:</label>
+                    <span id="proof-type" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="postal-code">Postal Code:</label>
+                    <span id="postal-code" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="license-front">License (Front):</label>
+                    <img id="license-front" class="details" alt="License Front" style="width:100px;height:auto;">
+                </div>
+                <div class="section">
+                    <label for="license-back">License (Back):</label>
+                    <img id="license-back" class="details" alt="License Back" style="width:100px;height:auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="verify_users.js"></script>
+</body>
+</html>

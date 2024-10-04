@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>
+            <div class="logo-container">
+                <img src="../asset/downloadlogo.png" alt="logo" class="sidebar-logo">
+            </div>
+        </h2>
+        
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <h2>Manage Booking</h2>
+        <ul>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_history.html" class="active">Booking History</a></li>
+            <li><a href="verify_users.html">Verify Users</a></li>
+            
+        </ul>
+        <h2>Manage Services</h2>
+        <ul>
+            <li><a href="car_details.html">Car Details</a></li>
+            <li><a href="car_rental.html">Car Rental</a></li>
+            <li><a href="car-return.html">Car Return</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Booking History</h1>
+        <table class="booking-history-table">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Customer Name</th>
+                    <th>Car Model</th>
+                    <th>Booking Date</th>
+                    <th>Rental Start Date</th>
+                    <th>Rental End Date</th>
+                    <th>Advance Payment</th>
+                    <th>Payment Status</th>
+                    <th>Booking Status</th>
+                </tr>
+            </thead>
+            <tbody id="booking-history">
+                <!-- Booking rows will be dynamically injected here -->
+            </tbody>
+        </table>
+
+        
+    </div>
+
+    <footer>
+        &copy; 2024 Car Rental Services. All Rights Reserved.
+    </footer>
+
+    <script src="booking_history.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Services - Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../Customer_Styles/cus_Styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav">
+            <div class="logo">
+                <img src="../asset/downloadlogo.png" alt="logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="../AboutUs/about.html">About Us</a></li>
+                    <li><a href="../Car_Categories/get-car.html">Get Car</a></li>
+                    <li><a href="../Contact_us/contact.html">Contact Us</a></li>
+                    <li><a href="../Customer_login/login.html">Login </a></li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+        <section class="register-section">
+            <div id="Message" class="meg"></div>
+            <div class="title">
+                <h2>Register</h2>
+            </div>
+            <form id="registerForm">
+                <label for="name">Enter Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+                <label for="phone">Enter Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+94 123456789" required>
+
+                <label for="email">Enter Email Id</label>
+                <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+
+                <label for="nic">NIC Number</label>
+                <input type="text" id="nic" name="nic" placeholder="123456789V" required>
+
+                <label for="password">Enter Password</label>
+                <input type="password" id="password" name="password" placeholder="********" required>
+
+                <div id="password-requirements" class="requirements">
+                    <ul>
+                        <li>At least one uppercase letter</li>
+                        <li>At least one lowercase letter</li>
+                        <li>At least one digit</li>
+                        <li>At least one special character (@, #, $, etc.)</li>
+                        <li>A minimum of 8 characters in total</li>
+                    </ul>
+                </div>
+
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="password" id="confirmpassword" name="password" placeholder="********" required>
+
+                <!-- Add a checkbox to show or hide passwords -->
+                <label>
+                    <input type="checkbox" id="show-password"> Show Password
+                </label>
+
+                <button type="submit">Register</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-left">
+                <h3>Car Rental Services</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Get Car</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>Address: 40/2 Madattady road, Maviddapuram tellippalai, jaffna</li>
+                    <li>Email: <a href="mailto:info@carrental.com">info@carrental.com</a></li>
+                    <li>Phone: (+94) 456-7890</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script defer src="script.js"></script>
+
+</body>
+
+</html>

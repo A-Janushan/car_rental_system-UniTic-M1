@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Services - My Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="../Customer_Styles/cus_Styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav">
+            <div class="logo">
+                <img src="../asset/downloadlogo.png" alt="logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="../AboutUs/about.html">About Us</a></li>
+                    <li><a href="../Car_Categories/get-car.html">Get Car</a></li>
+                    <li><a href="../Contact_us/contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="user-dropdown">
+                User ▼
+                <div class="user-dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="../Customer_login/login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="profile-update">
+            <div class="container">
+                <h2>My Profile</h2>
+                <div class="notification"></div>
+
+                <div class="verification-status">
+                    <span>Profile Verification Status:</span>
+                    <span class="status"></span>
+                </div>
+                <form id="profile-form">
+                    <fieldset>
+                        <legend>1. Basic Information</legend>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                        
+                        <label for="email">Email Id</label>
+                        <input type="email" id="email" name="email" required>
+                        
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required>
+
+                        <label for="postal-code">Postal Code</label>
+                        <input type="text" id="postal-code" name="postal-code">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>2. Driving License</legend>
+                        <label for="license-number">Driving License Number</label>
+                        <input type="text" id="license-number" name="license-number" required>
+                        
+                        <label for="license-front">Driving License Front Image</label>
+                        <input type="file" id="license-front" name="license-front" accept="image/*" required>
+                        <img id="licenseFrontPreview" style="display:none; width: 100px; height: auto;" alt="License Front Preview">
+                        
+                        <label for="license-back">Driving License Back Image</label>
+                        <input type="file" id="license-back" name="license-back" accept="image/*" required>
+                        <img id="licenseBackPreview" style="display:none; width: 100px; height: auto;" alt="License Back Preview">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>3. Address / ID Proof</legend>
+                        <label for="proof-type">Select Address / ID Proof</label>
+                        <select id="proof-type" name="proof-type" required>
+                            <option value="">Select ID Proof</option>
+                            <option value="passport">Passport</option>
+                            <option value="national-id">National ID</option>
+                            <option value="utility-bill">Utility Bill</option>
+                        </select>
+                        
+                        <label for="proof-number">Selected ID Proof Number</label>
+                        <input type="text" id="proof-number" name="proof-number" required>
+                    </fieldset>
+                    
+                    <button type="submit">Update Profile</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-left">
+                <h3>Car Rental Services</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Get Car</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li>Address: 40/2 Madattady road, Maviddapuram tellippalai, jaffna</li>
+                    <li>Email: <a href="mailto:info@carrental.com">info@carrental.com</a></li>
+                    <li>Phone: (+94) 456-7890</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

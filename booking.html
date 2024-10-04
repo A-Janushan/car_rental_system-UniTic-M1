@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Requests</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar .logo-container img {
+            height: auto;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a.active {
+            font-weight: bold;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        .booking-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .booking-table th,
+        .booking-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .booking-table th {
+            background-color: #f1c40f;
+            color: black;
+        }
+
+        .booking-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .booking-table tr:hover {
+            background-color: #ddd;
+        }
+
+        .action-button {
+            padding: 5px 10px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .approve {
+            background-color: green;
+        }
+
+        .reject {
+            background-color: red;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: opacity 0.5s;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-body .section {
+            margin-bottom: 15px;
+        }
+
+        .modal-body label {
+            font-weight: bold;
+        }
+
+        .modal-body .details {
+            margin-left: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>
+            <div class="logo-container">
+                <img src="../asset/downloadlogo.png" alt="logo" class="sidebar-logo">
+            </div>
+        </h2>
+
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <h2>Manage Booking</h2>
+        <ul>
+            <li><a href="booking.html" class="active">Booking</a></li>
+            <li><a href="booking_history.html">Booking History</a></li>
+            <li><a href="verify_users.html">Verify Users</a></li>
+            
+            
+        </ul>
+        <h2>Manage Services</h2>
+        <ul>
+            <li><a href="car_details.html">Car Details</a></li>
+            
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Booking Requests</h1>
+        <table class="booking-table">
+            <thead>
+                <tr>
+                    <th>Booking ID</th> <!-- Added Booking ID -->
+                    <th>Booking Date</th> <!-- Added Booking Date -->
+                    <th>Customer Id</th>
+                    <th>Rental CarId</th>
+                    <th>Advance Payment</th>
+                    <th>Status</th>
+                    
+                    <th>Actions</th>
+                    <th>Rental</th>
+
+                </tr>
+            </thead>
+            <tbody id="booking-requests">
+                <!-- Booking rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="rentalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-rental-modal">&times;</span>
+            <h2>Rental Confirmation</h2>
+            <label for="rentalStartDate">Rental Start Date:</label>
+            <input type="date" id="rentalStartDate" required>
+            <label for="halfPayment">Half Payment Amount:</label>
+            <input type="number" id="halfPayment" required>
+            <button id="confirmRental">Confirm Rental</button>
+        </div>
+    </div>
+
+    
+    
+
+    <footer>
+        &copy; 2024 Car Rental Services. All Rights Reserved.
+    </footer>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" aria-label="Close modal">&times;</span>
+            <div class="modal-header">
+                <h2>Booking Details</h2>
+            </div>
+            <div class="modal-body">
+                <div class="section">
+                    <label for="bookingId">Booking ID:</label>
+                    <span id="bookingId" class="details"></span> <!-- Added Booking ID to Modal -->
+                </div>
+                <div class="section">
+                    <label for="bookingDate">Booking Date:</label>
+                    <span id="bookingDate" class="details"></span> <!-- Added Booking Date to Modal -->
+                </div>
+                <div class="section">
+                    <label for="customerid">Customer Id:</label>
+                    <span id="customerid" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="name">Customer Name:</label>
+                    <span id="name" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="rentalCarId">Rental CarId:</label>
+                    <span id="rentalCarId" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="email">Email:</label>
+                    <span id="email" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="phone">Phone:</label>
+                    <span id="phone" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="address">Address:</label>
+                    <span id="address" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="license-number">License Number:</label>
+                    <span id="license-number" class="details"></span>
+                </div>
+
+                <div class="section">
+                    <label for="paymentAmount">Payment Amount:</label>
+                    <span id="paymentAmount" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="paymentStatus">Payment Status:</label>
+                    <span id="paymentStatus" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="proof-type">Proof Type:</label>
+                    <span id="proof-type" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="proof-number">Proof Number:</label>
+                    <span id="proof-number" class="details"></span>
+                </div>
+
+                <div class="section">
+                    <h3>Vehicle Details</h3>
+                </div>
+                <div class="section">
+                    <label for="brand">Brand:</label>
+                    <span id="brand" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="model">Model:</label>
+                    <span id="model" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="fuel">Fuel:</label>
+                    <span id="fuel" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="seats">Seats:</label>
+                    <span id="seats" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="price">Advance Payment:</label>
+                    <span id="price" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="availableFrom">Rental request date From:</label>
+                    <span id="availableFrom" class="details"></span>
+                </div>
+                <div class="section">
+                    <label for="availableTo">Rental request date To:</label>
+                    <span id="availableTo" class="details"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="booking.js"></script>
+</body>
+
+</html>

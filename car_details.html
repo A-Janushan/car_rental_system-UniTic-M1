@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>
+            <div class="logo-container">
+                <img src="../asset/downloadlogo.png" alt="logo" class="sidebar-logo">
+            </div>
+        </h2>
+        
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <h2>Manage Booking</h2>
+        <ul>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_history.html">Booking History</a></li>
+            <li><a href="verify_users.html">Verify Users</a></li>
+            
+        </ul>
+        <h2>Manage Services</h2>
+        <ul>
+            <li><a href="car_details.html" class="active">Car Details</a></li>
+           
+        </ul>
+    </div>
+
+    <main class="content">
+        <header class="content-header">
+            <h1>Car Details</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search" class="search-box" />
+                <button class="add-car">Add Car</button>
+            </div>
+        </header>
+        <table class="car-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Brand</th>
+                    <th>Body Type</th>
+                    <th>Model</th>
+                    <th>Transmission</th>
+                    <th>Fuel Type</th>
+                    <th>No of Seats</th>
+                    <th>Price/hr</th>
+                    <th>Image</th>
+                    <th>Available From</th>
+                    <th>Available To</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <form id="carForm">
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand" required />
+            
+            <label for="bodyType">Body Type:</label>
+            <input type="text" id="bodyType" name="bodyType" required />
+            
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required />
+            
+            <label for="transmission">Transmission:</label>
+            <select id="transmission" name="transmission" required>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select>
+            <img src="../Landing_Page/index.html" alt="">
+            <label for="fuelType">Fuel Type:</label>
+            <select id="fuelType" name="fuelType" required>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Electric">Electric</option>
+            </select>
+            
+            <label for="seats">No of Seats:</label>
+            <input type="number" id="seats" name="seats" required />
+            
+            <label for="price">Price/hr:</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" required />
+            
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image" required />
+            
+            <label for="availableFrom">Available From:</label>
+            <input type="date" id="availableFrom" name="availableFrom" required />
+            
+            <label for="availableTo">Available To:</label>
+            <input type="date" id="availableTo" name="availableTo" required />
+            
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+    <footer>
+        &copy; 2024 Car Rental Services. All Rights Reserved.
+    </footer>
+    
+    <script src="car_details.js"></script>
+</body>
+</html>

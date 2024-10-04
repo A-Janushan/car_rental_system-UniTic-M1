@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="car_return.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>
+            <div class="logo-container">
+                <img src="../asset/downloadlogo.png" alt="logo" class="sidebar-logo">
+            </div>
+        </h2>
+
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <h2>Manage Booking</h2>
+        <ul>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_history.html">Booking History</a></li>
+            <li><a href="verify_users.html">Verify Users</a></li>
+          
+        </ul>
+        <h2>Manage Services</h2>
+        <ul>
+            <li><a href="car_details.html" class="active">Car Details</a></li>
+        </ul>
+    </div>
+
+    <main class="content">
+        <header class="content-header">
+            <!-- Optional header content can go here -->
+        </header>
+
+        <div class="container">
+            <form id="car-return-form">
+                <h2><ion-icon name="calculator-outline"></ion-icon> Car Return</h2>
+
+                <label for="carBookNumber">Car Booking Number</label>
+                <select id="carBookNumber" name="carBookNumber" required>
+                    <option value="">Select Car</option>
+                </select>
+
+                <label for="userNIC">User NIC/Passport No</label>
+                <input type="text" id="userNIC" name="userNIC" required>
+
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate" required>
+
+                <label for="returnDate">Return Date</label>
+                <input type="date" id="returnDate" name="returnDate" required>
+
+                <label for="Exra Payment">Exra Payment</label>
+                <input type="number" id="Exra Payment" name="Exra Payment" required>
+
+                
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="noDamage" value="No Damage"> No Damage</label>
+                    <label><input type="checkbox" name="noAccident" value="No Accident"> No Accident</label>
+                    <label><input type="checkbox" name="noDrunkDrive" value="No Drunk & Drive or Over Speed"> No Drunk &
+                        Drive or Over Speed</label>
+                    <label><input type="checkbox" name="noPoliceCase" value="No Police Case or Crime Activity"> No
+                        Police Case or Crime Activity</label>
+                    
+                </div>
+
+                <label for="remarksCar">Remarks for Car</label>
+                <textarea id="remarksCar" name="remarksCar"></textarea>
+
+                <label for="remarksUser">Remarks for User</label>
+                <textarea id="remarksUser" name="remarksUser"></textarea>
+
+                <div class="total-cost">
+                    <label for="totalLKR">Total (LKR)</label>
+                    <input type="number" id="totalLKR" name="totalLKR" readonly>
+                </div>
+
+                <div class="buttons">
+                    <button type="button" class="btn" onclick="calculateTotal()">Calculate Total</button>
+                    <button type="reset" class="btn">Reset</button>
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn" onclick="printReceipt()">Print Receipt</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Car Rental Services. All Rights Reserved.
+    </footer>
+
+    <script src="car_return.js"></script>
+</body>
+
+</html>

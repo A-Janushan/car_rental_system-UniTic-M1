@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-submit {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-submit i {
+            font-size: 16px;
+        }
+
+        .logout {
+            padding: 8px 16px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background-color: #c82333;
+        }
+
+        .notification-container {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .notification-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .badge {
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 0 5px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            font-size: 12px;
+        }
+
+        .notification-dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            z-index: 1;
+            width: 300px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notification-dropdown ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-dropdown li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .notification-dropdown li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>
+            <div class="logo-container">
+                <img src="../asset/downloadlogo.png" alt="logo" class="sidebar-logo">
+            </div>
+        </h2>
+
+        <ul>
+            <li><a href="#" class="active">Dashboard</a></li>
+        </ul>
+        <h2>Manage Booking</h2>
+        <ul>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="booking_history.html">Booking History</a></li>
+            <li><a href="verify_users.html">Verify Users</a></li>
+            
+            
+        </ul>
+        <h2>Manage Services</h2>
+        <ul>
+            <li><a href="car_details.html">Car Details</a></li>
+           
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search...">
+                <button class="search-submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="notification-container">
+                <button id="notification-button" class="notification-button">
+                    <i class="fas fa-bell"></i> Notifications <span id="notification-count" class="badge">0</span>
+                </button>
+
+                <div id="notification-dropdown" class="notification-dropdown">
+                    <ul>
+                        <!-- Notifications will be populated here -->
+                    </ul>
+                </div>
+            </div>
+
+            <a href="#" id="logout-button" class="logout">Logout</a>
+        </div>
+
+        <div class="data-table RentDetails">
+            <div class="title">
+                <ion-icon name="people"></ion-icon>
+                <span class="text">Rents</span>
+            </div>
+        
+            <div>
+                <table id="RentalTable">
+                    <thead>
+                        <tr>
+                            <th>Rent ID</th>
+                            <th>Customer ID</th>
+                            <th>DVD ID</th>
+                            <th>Rent Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Advance</th>
+                            <th>Payment Action</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rent details will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Modal for condition details -->
+        <div id="conditionModal" class="modal">
+            <div class="modal-header">Return Details</div>
+            <div class="modal-body">
+                <!-- Details of the return condition will be dynamically added -->
+            </div>
+            <button id="closeModal" class="close-btn">Close</button>
+        </div>
+        
+       
+    </div>
+
+    <footer>
+        &copy; 2024 Car Rental Services. All Rights Reserved.
+    </footer>
+
+    <script src="car_rental.js"></script>
+</body>
+
+</html>
